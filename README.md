@@ -1,3 +1,3 @@
 # COMP-524
 
-Programming assignments for COMP 524
+Programming assignment 1 for COMP 524
