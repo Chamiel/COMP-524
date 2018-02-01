@@ -1,3 +1,3 @@
-# COMP-585
+# COMP-524
 
-Programming assignments for COMP 585
+Programming assignments for COMP 524
