@@ -1,0 +1,78 @@
+course(compilers).
+course(languages).
+course(grammars).
+course(db).
+course(distributed).
+course(networking).
+course(os).
+course(security).
+course(software).
+course(web).
+prereq(compilers,languages).
+prereq(distributed,networking).
+prereq(distributed,compilers).
+prereq(languages,grammars).
+prereq(networking,os).
+prereq(security,os).
+prereq(security,db).
+prereq(software,web).
+prereq(software,db).
+prereqcheck(X,Y):-
+    prereq(X,Y).
+prereqcheck(X,Y):-
+    prereq(X,Z),
+    prereqcheck(Z,Y).
+time(compilers,9).
+time(db,10).
+time(distributed,11).
+time(grammars,8).
+time(languages,12).
+time(networking,9).
+time(os,1).
+time(security,2).
+time(software,1).
+time(web,10).
+project(compilers,1).
+project(db,1).
+project(distributed,0).
+project(grammars,0).
+project(languages,0).
+project(networking,0).
+project(os,0).
+project(security,1).
+project(software,1).
+project(web,1).
+effort(compilers,5).
+effort(db,2).
+effort(distributed,3).
+effort(grammars,1).
+effort(languages,1).
+effort(networking,3).
+effort(os,5).
+effort(security,4).
+effort(software,4).
+effort(web,2).
+plan(X,Y,Z):-
+    course(X),
+    course(Y),
+    course(Z),
+    not(prereqcheck(X,Y)),
+    not(prereqcheck(X,Z)),
+    not(prereqcheck(Y,X)),
+    not(prereqcheck(Y,Z)),
+    not(prereqcheck(Z,X)),
+    not(prereqcheck(Z,Y)),
+    time(X,T1),
+    time(Y,T2),
+    time(Z,T3),
+    not(T1=T2),
+    not(T1=T3),
+    not(T2=T3),
+    effort(X,E1),
+    effort(Y,E2),
+    effort(Z,E3),
+    not(E1+E2+E3>10),
+    project(X,P1),
+    project(Y,P2),
+    project(Z,P3),
+    not(P1+P2+P3>1).
